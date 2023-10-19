@@ -9,6 +9,10 @@ import {
 import MainRouter from './Router/MainRouter';
 import ErrorPage from './Error/ErrorPage';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import AddProduct from './pages/AddProduct';
+import MyCart from './pages/MyCart';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +22,25 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
+        loader: ()=>fetch('http://localhost:5000/car')
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
+      },
+      {
+        path: '/addProduct',
+        element: <AddProduct></AddProduct>
+      },
+      {
+        path: '/car/:brand/:_id',
+        element: <MyCart></MyCart>,
+        loader: ({params})=> fetch(`http://localhost:5000/car/${params.brand}/${params._id}`)
       }
     ]
   },
