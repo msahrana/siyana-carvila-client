@@ -1,46 +1,52 @@
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
-const AddProduct = () => {
+const UpdateCar = () => {
 
-  const handleAddCar = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const brand = form.brand.value;
-    const type = form.type.value;
-    const price = form.price.value;
-    const description = form.description.value;
-    const image = form.image.value;
-    const rating = form.rating.value;
-    const newCar = { name, brand, type, price, description, image,rating};
-    console.log(newCar);
+    const car = useLoaderData()
 
-    fetch('http://localhost:5000/car',{
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(newCar)
-    })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-            if (data.insertedId) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Car Added Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                  })
-            }
+    const {_id, name, brand, image, description, price, rating, type} = car || {}
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const brand = form.brand.value;
+        const type = form.type.value;
+        const price = form.price.value;
+        const description = form.description.value;
+        const image = form.image.value;
+        const rating = form.rating.value;
+        const updateCar = { name, brand, type, price, description, image,rating};
+        console.log(updateCar);
+    
+        fetch(`http://localhost:5000/car/${brand}/${_id}`,{
+            method: 'get',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateCar)
         })
-  };
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Car Update Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                      })
+                }
+            })
+      };
 
-  return (
-    <div className="px-32 py-8 bg-lime-50">
-      <h1 className="text-3xl font-bold text-center">Add a New Car:</h1>
-      <form onSubmit={handleAddCar}>
+
+    return (
+        <div className="px-32 py-8 bg-lime-50">
+            <h2 className="text-3xl font-bold text-center">Update a New Car: {name}</h2>
+            <form onSubmit={handleUpdate}>
         <div className="lg:flex mt-6">
           <div className="form-control w-1/2">
             <label className="label">
@@ -49,7 +55,7 @@ const AddProduct = () => {
             <label className="input-group">
               <input
                 type="text"
-                name="name"
+                name="name" defaultValue={name}
                 placeholder="Product Name"
                 className="input input-bordered w-full"
               />
@@ -62,7 +68,7 @@ const AddProduct = () => {
             <label className="input-group">
               <input
                 type="text"
-                name="brand"
+                name="brand" defaultValue={brand}
                 placeholder="Brand Name"
                 className="input input-bordered w-full"
               />
@@ -77,7 +83,7 @@ const AddProduct = () => {
             <label className="input-group">
               <input
                 type="text"
-                name="type"
+                name="type" defaultValue={type}
                 placeholder="Type Name"
                 className="input input-bordered w-full"
               />
@@ -90,7 +96,7 @@ const AddProduct = () => {
             <label className="input-group">
               <input
                 type="number"
-                name="price"
+                name="price" defaultValue={price}
                 placeholder="Price"
                 className="input input-bordered w-full"
               />
@@ -103,7 +109,7 @@ const AddProduct = () => {
             <label className="input-group">
               <input
                 type="number"
-                name="rating"
+                name="rating" defaultValue={rating}
                 placeholder="Rating"
                 className="input input-bordered w-full"
               />
@@ -118,7 +124,7 @@ const AddProduct = () => {
             <label className="input-group">
               <input
                 type="text"
-                name="description"
+                name="description" defaultValue={description}
                 placeholder="Description"
                 className="input input-bordered w-full"
               />
@@ -133,7 +139,7 @@ const AddProduct = () => {
             <label className="input-group">
               <input
                 type="text"
-                name="image"
+                name="image" defaultValue={image}
                 placeholder="Image URL"
                 className="input input-bordered w-full"
               />
@@ -173,11 +179,11 @@ const AddProduct = () => {
         <input
           className="btn btn-success mt-6 w-full"
           type="submit"
-          value="Add Car"
+          value="Update Car"
         />
       </form>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default AddProduct;
+export default UpdateCar;

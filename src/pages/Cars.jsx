@@ -1,21 +1,25 @@
-import { useLoaderData, useParams} from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
+import Banner from "../components/Header/Banner";
 
+const Cars = () => {
+  const car = useLoaderData()
+  console.log(car)
 
+  const {_id} = useParams()
+  console.log(_id)
 
-const MyCart = () => {
+  const {name,brand, image, description, price, rating} = car || {}
 
-    const data = useLoaderData()
-    console.log(data)
+  const handleDetails = _id =>{
+    console.log(_id)
+  }
+  const handleUpdate = _id =>{
+    console.log(_id)
+  }
 
-    const car = useParams()
-    console.log(car)
-
-  
-  
-    const {name,brand, image, description, price, rating} = car || {}
-  
-
-    return (
+  return (
+    <div>
+        <Banner></Banner>
         <div className="justify-center items-center ml-96 w-[800px] -mt-2">
         <div className="card shadow-xl">
           <figure>
@@ -63,10 +67,20 @@ const MyCart = () => {
               className="mask mask-star-2 bg-orange-400"
             />
           </div>
+
+            <div className="flex justify-between">
+              <Link to='/myCart'>
+                <button onClick={()=>handleDetails(_id)} className="btn bg-lime-600">Details</button>
+              </Link>
+              <Link to={`/updateCar/${brand}/${_id}`}>
+                <button onClick={()=>handleUpdate(_id)} className="btn bg-lime-600">Update</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
-export default MyCart;
+export default Cars;
