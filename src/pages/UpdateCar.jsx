@@ -22,7 +22,7 @@ const UpdateCar = () => {
         console.log(updateCar);
     
         fetch(`http://localhost:5000/car/${brand}/${_id}`,{
-            method: 'get',
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -31,7 +31,7 @@ const UpdateCar = () => {
             .then(res=>res.json())
             .then(data=>{
                 console.log(data)
-                if (data.insertedId) {
+                if (data.modifiedCount>0) {
                     Swal.fire({
                         title: 'Success!',
                         text: 'Car Update Successfully',
