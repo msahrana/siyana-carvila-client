@@ -2,6 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../components/Header/Banner";
 import BrandCars from "./BrandCars";
 import { useState } from "react";
+import FeaturePart1 from "../FeaturePart/FeaturePart1";
+import FeaturePart2 from "../FeaturePart/FeaturePart2";
 
 
 
@@ -20,6 +22,12 @@ const Home = () => {
                     cars.map(car=> <BrandCars key={car._id} car={car} cars={cars} setCars={setCars}></BrandCars>)
                 }
                 </div>
+            </div>
+            <div>
+                <FeaturePart1></FeaturePart1>
+            </div>
+            <div>
+                <FeaturePart2></FeaturePart2>
             </div>
         </div>
     );
