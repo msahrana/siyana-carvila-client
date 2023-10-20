@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header/Header";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -10,6 +11,7 @@ const MainRouter = () => {
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>
+            <Toaster/>
         </div>
     );
 };

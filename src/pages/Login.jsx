@@ -1,6 +1,16 @@
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
+
+  const {signIn} = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    console.log('located in login page',location)
 
     const handleLogin = e =>{
         e.preventDefault()
@@ -8,6 +18,20 @@ const Login = () => {
         const email = form.email.value 
         const password = form.password.value 
         console.log(email, password)
+        signIn(email,password)
+        .then(result =>{
+            if (password.length < 8) {
+                toast.error('Password must be at least 8 characters')
+            }
+            else{
+                Swal("Good job!", "You successfully Registered!", "success");
+            }
+            console.log(result.user)
+            navigate(location?.state ? location.state : '/')
+        })
+        .catch(error=>{
+            console.error(error)
+        })
     }
 
   return (

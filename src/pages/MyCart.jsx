@@ -16,7 +16,7 @@ const MyCart = () => {
   
 
     return (
-        <div className="justify-center items-center ml-96 w-[800px] -mt-2">
+        <div className="justify-center items-center ml-96 w-[800px] h-[540px] bg-orange-50">
         <div className="card shadow-xl">
           <figure>
             <img className="w-full"
