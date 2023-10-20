@@ -2,7 +2,7 @@
 
 const FeaturePart1 = () => {
     return (
-        <div className="mx-20">
+        <div className="mx-20 bg-lime-50">
             <h1 className="text-4xl font-bold text-center my-10">About <span className="text-rose-500"> SIYANA CARVILA</span></h1>
             <div className="flex">
                 <div className="w-1/2">
@@ -17,7 +17,7 @@ const FeaturePart1 = () => {
                     road in style.</p>
                 </div>
                 <div className="w-1/2">
-                    <img className="rounded" src="https://i.ibb.co/0KXhmSs/featurepart1.jpg" alt="" />
+                    <img className="rounded" src="https://i.ibb.co/0KXhmSs/featurepart1.jpg" name="image" alt="" />
                 </div>
             </div>
         </div>
