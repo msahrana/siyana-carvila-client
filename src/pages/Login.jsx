@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import SocialLogin from "./SocialLogin";
 
 
 const Login = () => {
@@ -35,46 +36,30 @@ const Login = () => {
     }
 
   return (
-    <div className="hero min-h-screen bg-lime-50 -my-36">
-      <div className="hero-content flex-col">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold text-orange-500">Please Login now!</h1>
-        </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleLogin} className="card-body">
+    <div className="bg-emerald-50">
+        <h2 className="text-4xl text-orange-400 font-semibold mb-10 pt-10  text-center">Please Login Now!</h2>
+          <form onSubmit={handleLogin} className="border w-1/4 mx-auto">
             <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email" name="email"
-                placeholder="Email"
-                className="input input-bordered"
-                required
-              />
+                <label className="label">
+                    <span className="label-text">Email</span>
+                </label>
+                <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
             </div>
             <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password" name="password"
-                placeholder="Password"
-                className="input input-bordered"
-                required
-              />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
+                <label className="label">
+                    <span className="label-text">Password</span>
+                </label>
+                <input type="password" name="password" placeholder="Password" className="input input-bordered" required />
+                <label className="label">
+                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary w-full">Login</button>
             </div>
-          </form>
-        </div>
-      </div>
+            <p className="text-center mt-4 mb-10">Do not have an account: <Link className="text-blue-600 font-bold" to='/register'>Register</Link></p>
+            <SocialLogin></SocialLogin>
+        </form>
     </div>
   );
 };

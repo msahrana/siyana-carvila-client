@@ -21,6 +21,7 @@ const Home = () => {
                 {
                     cars.map(car=> <BrandCars key={car._id} car={car} cars={cars} setCars={setCars}></BrandCars>)
                 }
+                
                 </div>
             </div>
             <div>

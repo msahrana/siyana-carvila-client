@@ -16,6 +16,7 @@ import MyCart from './pages/MyCart';
 import Cars from './pages/Cars';
 import UpdateCar from './pages/UpdateCar';
 import AuthProvider from './provider/AuthProvider';
+import PrivateRoute from './private/PrivateRoute';
 // import Cart from './pages/Cart';
 
 const router = createBrowserRouter([
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: ()=>fetch('http://localhost:5000/car')
+        loader: ()=>fetch('http://localhost:5000/car/brand')
       }, 
       {
         path: '/login',
@@ -39,21 +40,21 @@ const router = createBrowserRouter([
       },
       {
         path: '/addProduct',
-        element: <AddProduct></AddProduct>
+        element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
       },
       {
         path: '/updateCar/:brand/:_id',
-        element: <UpdateCar></UpdateCar>,
-        loader: ({params})=> fetch(`http://localhost:5000/car/${params.brand}/${params._id}`) 
+        element: <PrivateRoute><UpdateCar></UpdateCar></PrivateRoute>,
+        loader: ({params})=> fetch(`http://localhost:5000/carbrand/${params._id}`) 
       },
       {
         path: '/myCart',
-        element: <MyCart></MyCart>
+        element: <PrivateRoute><MyCart></MyCart></PrivateRoute>
       },
       {
         path: '/car/:brand/:_id',
         element: <Cars></Cars>,
-        loader: ({params})=> fetch(`http://localhost:5000/car/${params.brand}/${params._id}`)
+        loader: ({params})=> fetch(`http://localhost:5000/car/brand/${params._id}`)
       }
     ]
   },
