@@ -17,7 +17,7 @@ import Cars from './pages/Cars';
 import UpdateCar from './pages/UpdateCar';
 import AuthProvider from './provider/AuthProvider';
 import PrivateRoute from './private/PrivateRoute';
-// import Cart from './pages/Cart';
+
 
 const router = createBrowserRouter([
   {
