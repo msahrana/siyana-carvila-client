@@ -20,7 +20,7 @@ const Cars = () => {
   return (
     <div>
         <Banner></Banner>
-        <div className="justify-center items-center ml-96 w-[800px] -mt-2">
+        <div className="justify-center items-center ml-96 w-[800px]">
         <div className="card shadow-xl">
           <figure>
             <img className="w-full"
