@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: ()=>fetch('http://localhost:5000/car/brand')
+        loader: ()=>fetch('https://siyana-carvila-server.vercel.app/car/brand')
       }, 
       {
         path: '/login',
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: '/updateCar/:brand/:_id',
         element: <PrivateRoute><UpdateCar></UpdateCar></PrivateRoute>,
-        loader: ({params})=> fetch(`http://localhost:5000/carbrand/${params._id}`) 
+        loader: ({params})=> fetch(`https://siyana-carvila-server.vercel.app/carbrand/${params._id}`) 
       },
       {
         path: '/myCart',
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
       {
         path: '/car/:brand/:_id',
         element: <Cars></Cars>,
-        loader: ({params})=> fetch(`http://localhost:5000/car/brand/${params._id}`)
+        loader: ({params})=> fetch(`https://siyana-carvila-server.vercel.app/car/brand/${params._id}`)
       }
     ]
   },
